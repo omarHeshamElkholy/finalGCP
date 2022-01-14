@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: redis
+  name: redis
+spec:
+  containers:
+    - image: gcr.io/finaltask-project/redisimg
+      name: redis
+      ports:
+        - containerPort: 6379
+      resources: {}
+  restartPolicy: OnFailure
+status: {}

@@ -1,0 +1,21 @@
+version: '3.6'  
+services:  
+  app:
+    build:
+      context: .
+    depends_on:
+      - redis
+    ports:
+      - "8000:8000"
+    image: gcr.io/finaltask-project/pyapp  
+  redis:
+    image: gcr.io/finaltask-project/redisimg
+    ports:
+        - "6379"
+    deploy:
+        replicas: 2
+        update_config:
+            parallelism: 2
+            delay: 10s
+        restart_policy:
+            condition: on-failure
